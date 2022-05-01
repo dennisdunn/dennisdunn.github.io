@@ -325,15 +325,14 @@ class AST_BinaryOp extends AST_Node {
 
 Pretty cool!
 
-## Closing comments
 
-Kevin went on to add other functionality to his grammar. First he added modulo and power binary operators to the grammar. Next he added unary operators like factorial as well as the trigonometric functions sine, cosine, and tangent.
+Kevin went on to add other functionality to his grammar. First he added **modulo** and **power** binary operators to the grammar. Next he added unary operators like **factorial** as well as the trigonometric functions **sine**, **cosine**, and **tangent**.
 
 If you use parser combinators to build your parsers and evaluators, the hardest part is getting the grammar correct. Building a parser generator that takes a grammar and uses a parser combinator library to build a parser is left as an exercise for the reader. :)
 
 [^1]: Explain the difference between javascript function expressions and function definitions.
 
-[^2]: Mention that open() and close() are functions that take a stream.
+[^2]: Mention that ```open()``` and ```close()``` are functions that take a stream.
 
 [^3]: If you look at the code in the repository you'll see that the non-terminal functions use javascript function definition syntax, not function expression syntax. This is because we have recursive functions and function definitions are hoisted.
 
