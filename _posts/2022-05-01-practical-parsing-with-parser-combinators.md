@@ -59,7 +59,7 @@ We are going to use parser combinators to build a parser for Kevin's context-fre
 
 Before we do that, however, we need a blueprint to show us how sentences in our context-free language arrange their parts. That blueprint is known as a grammar. 
 
-Here is a simple grammar written in Backus-Naur form for arithmetic expressions. Each line of the grammar is a production rule. The left side of the ::= is a symbol and the right side is a rule for how to produce the thing on the left side. Non-terminals are the parts between the angle brackets and terminals are the characters such as the math operators and the open- and close- parentheses.
+Here is a simple grammar written in Backus-Naur form for arithmetic expressions. Each line of the grammar is a production rule. The left side of the ```::=``` is a symbol and the right side is a rule for how to produce the thing on the left side. Non-terminals are the parts between the angle brackets and terminals are the characters such as the math operators and the open- and close- parentheses.
 
 ```
 <exp> ::= <exp> + <term> | <exp> - <term> | <term>
@@ -67,7 +67,7 @@ Here is a simple grammar written in Backus-Naur form for arithmetic expressions.
 <factor> ::= ( <exp> ) | <number>
 ```
 
-The first line says that an expression is an expression, a plus symbol, and a term OR an expression, a minus symbol, and a term OR a term. Using these rules we can break down a sentence like 1+2 into its parts.
+The first line says that an expression is an expression, a plus symbol, and a term OR an expression, a minus symbol, and a term OR a term. Using these rules we can break down a sentence like ```1+2``` into its parts.
 
 Let’s simplify the notation a little bit
 
@@ -170,7 +170,7 @@ or = parsers => stream => {
 }
 ```
 
-Using just the char() generator and the or() combinator we can parse the math operator terminals of our grammar.
+Using just the ```char()``` generator and the ```or()``` combinator we can parse the math operator terminals of our grammar.
 
 * sum = or(char(‘+’), char(‘-’))
 * prod = or(char(‘*’), char(‘/’))
@@ -333,6 +333,9 @@ Kevin went on to add other functionality to his grammar. First he added modulo a
 If you use parser combinators to build your parsers and evaluators, the hardest part is getting the grammar correct. Building a parser generator that takes a grammar and uses a parser combinator library to build a parser is left as an exercise for the reader. :)
 
 [^1]Explain the difference between javascript function expressions and function definitions.
+
 [^2]Mention that open() and close() are functions that take a stream.
+
 [^3]If you look at the code in the repository you'll see that the non-terminal functions use javascript function definition syntax, not function expression syntax. This is because we have recursive functions and function definitions are hoisted.
+
 [^4]Note that we test for a number first. Remember that comment about blowing the stack? This is why.
