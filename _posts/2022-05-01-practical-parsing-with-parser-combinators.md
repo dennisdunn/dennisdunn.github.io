@@ -95,17 +95,17 @@ This time, Kevin consults the other oracle, Wikipedia.
 We have rules of the form
 
 ```
-Α -> Αɑ1 | … | Αɑn | β1 | … | βm
+Α -> Αɑ<sub>1</sub> | … | Αɑ<sub>n</sub> | β<sub>1</sub> | … | β<sub>m</sub>
 ```
 
 We need to make some substitutions like this
 
 ```
-Α -> Α′β1 | … | Α′βm
-Α′ -> ɑ1Α′ | … | ɑnΑ′ | ε
+Α -> Α′β<sub>1</sub> | … | Α′β<sub>m</sub>
+Α′ -> ɑ<sub>1</sub>Α′ | … | ɑ<sub>n</sub>Α′ | ε
 ```
 
-That little ε is epsilon or the empty-rule and is the key for the transformation. It stops the production from recursively eating all of space and time. After all of these substitutions Kevins final blueprint looks like this
+That little **ε** is epsilon or the **empty-rule** and is the key for the transformation. It stops the production from recursively eating all of space and time. After all of these substitutions Kevins final blueprint looks like this
 
 ```
 sum -> + | -
