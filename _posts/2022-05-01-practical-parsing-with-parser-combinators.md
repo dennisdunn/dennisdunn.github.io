@@ -58,7 +58,7 @@ We are going to use parser combinators to build a parser for Kevin's context-fre
 
 Before we do that, however, we need a blueprint to show us how sentences in our context-free language arrange their parts. That blueprint is known as a grammar. 
 
-Here is a simple grammar written in Backus-Naur form for arithmetic expressions. Each line of the grammar is a production rule. The left side of the ```::=``` is a symbol and the right side is a rule for how to produce the thing on the left side. Non-terminals are the parts between the angle brackets and terminals are the characters such as the math operators and the open- and close- parentheses.
+Here is a simple grammar written in Backus-Naur form for arithmetic expressions. Each line of the grammar is a production rule. The left side of the `::=` is a symbol and the right side is a rule for how to produce the thing on the left side. Non-terminals are the parts between the angle brackets and terminals are the characters such as the math operators and the open- and close- parentheses.
 
 ```
 <exp> ::= <exp> + <term> | <exp> - <term> | <term>
@@ -66,7 +66,7 @@ Here is a simple grammar written in Backus-Naur form for arithmetic expressions.
 <factor> ::= ( <exp> ) | <number>
 ```
 
-The first line says that an expression is an expression, a plus symbol, and a term OR an expression, a minus symbol, and a term OR a term. Using these rules we can break down a sentence like ```1+2``` into its parts.
+The first line says that an expression is an expression, a plus symbol, and a term OR an expression, a minus symbol, and a term OR a term. Using these rules we can break down a sentence like `1+2` into its parts.
 
 Let's simplify the notation a little bit
 
@@ -144,20 +144,20 @@ Our parser combinators are functions that combine … parsers. A parser is a fun
 
 The simplest thing that we can parse is a single character like the mathematical operators of our grammar. If the next character in the sentence is the one we expected then return it to the caller and advance the position of the input stream. 
 
-```
-char = c => stream =>  stream.peek() === c ? stream.read() : null;[^1]
+```javascript
+char = c => stream =>  stream.peek() === c ? stream.read() : null; [^1]
 ```
 
 Note that char() is not a parser but a parser generator, it takes some text and returns a parser for that text. This one generator allows us to create parsers for two of the rules of our grammar, namely the open and close parentheses.
 
 
-* open = char('(')[^2]
+* open = char('(') [^2]
 * close = char(')')
 
 
-To parse something like the sum terminal of our grammar we want to determine if the next character is one of a set of characters. We need a higher-order function that takes a couple of ```char()``` parsers and returns a parser.
+To parse something like the sum terminal of our grammar we want to determine if the next character is one of a set of characters. We need a higher-order function that takes a couple of `char()` parsers and returns a parser.
 
-```
+```javascript
 or = parsers => stream => {
         for(parser of parsers) {
                 result = parser(stream)
@@ -169,16 +169,16 @@ or = parsers => stream => {
 }
 ```
 
-Using just the ```char()``` generator and the ```or()``` combinator we can parse the math operator terminals of our grammar.
+Using just the `char()` generator and the `or()` combinator we can parse the math operator terminals of our grammar.
 
 * sum = or(char('+'), char('-'))
 * prod = or(char('*'), char('/'))
 
 Albert Einstein is credited with the aphorism  “Make things as simple as possible, but no simpler.” We have a powerful programming language so let's use it accordingly. You will find that some parser combinator libraries actually use regular expressions as the basis for their parser generators.
 
-The basic parser generators of our combinator library are anyOfChar() and str(). We've changed the signatures of the stream methods to accept the number or characters to peek or read.
+The basic parser generators of our combinator library are `anyOfChar()` and `str()`. We've changed the signatures of the stream methods to accept the number or characters to peek or read.
 
-```
+```javascript
 anyOfChar = text => stream => text.indexOf(stream.peek(1)) >= 0 
     ? stream.read(1) 
     : null;
@@ -216,7 +216,7 @@ To create parsers for the number terminal and the non-terminals Kevin needs a fe
 
 First Kevin defines some parsers for the components of a number:
 
-```
+```javascript
 digit = anyOfChar('0123456789')
 digits = sequence(digit, many(digit))
 sign = anyOfChar('+-')
@@ -225,7 +225,7 @@ fractional = sequence(str('.'), digits)
 
 Then he combines them into a parser for numbers:
 
-```
+```javascript
 number = sequence(optional(sign), digits, optional(fractional))
 ```
 
@@ -233,11 +233,11 @@ number = sequence(optional(sign), digits, optional(fractional))
 
 The grammar has five non-terminals. To build parsers for each non-terminal, Kevin maps directly from the grammar to the various combinators.
 
-* Expr = sequence(Term, Expr_Prime)[^3]
+* Expr = sequence(Term, Expr_Prime) [^3]
 * Expr_Prime = optional(sequence(sum, Term, Expr_Prime))
 * Term = sequence(Factor, Term_Prime)
 * Term_Prime = optional(sequence(product, Factor, Term_Prime))
-* Factor = choice(number, sequence(open, Expr, close))[^4]
+* Factor = choice(number, sequence(open, Expr, close)) [^4]
 
 The parser for Kevins Type 2 context-free language comes to ten lines of code that map directly to the grammar we looked at earlier and a few helper functions. So how does Kevin use his brand new parser?
 
@@ -247,21 +247,21 @@ If you want to follow along with the code examples in this section, clone https:
 
 ### Parse Trees
 
-The start symbol of the grammar, ```G.start()```, gives us the function to call to parse our expressions. Calling ```G.start('(1 + 2) * 3')``` results in an array-of-arrays which is the parse tree of our expression. The parse tree contains all of the elements of the text with very little other structure.
+The start symbol of the grammar, `G.start()`, gives us the function to call to parse our expressions. Calling `G.start('(1 + 2) * 3')` results in an array-of-arrays which is the parse tree of our expression. The parse tree contains all of the elements of the text with very little other structure.
 
 ### Token Stream
 
-Let's tag the elements so that we know which part of the expression they represent. We'll take our terminal parsers and map the result to a function that tags the element. To do that, we'll use the ```map()``` combinator.
+Let's tag the elements so that we know which part of the expression they represent. We'll take our terminal parsers and map the result to a function that tags the element. To do that, we'll use the `map()` combinator.
 
 First, create a function that curries the token type argument of a token generator function:
 
-```
+```javascript
 token = type => value => ({type, value})
 ```
 
 Next, let's create some new parsers out of our existing parsers that return tokens instead of matched strings:
         
-```
+```javascript
 open = map(open, token('open-paren'))
 close = map(close, token('close-paren'))
 sum = map(sum, token('sum-op'))
@@ -277,14 +277,14 @@ Instead of creating tokens, let's create an abstract syntax tree of the source t
 
 Recall that our grammar has non-terminals of the form Α and Α′. Α is referred to as the head and Α′ is called the tail. The map() combinator is used to apply the static head_handler() and tail_handler() methods to the result of a parse of the non-terminal to build the tree. The handlers will look at the parse tree returned by the parser and set the tree properties of the node to the correct values.
 
-```
+```javascript
 map(sequence(Term, Expr_Prime), AST.head_handler)
 map(optional(sequence(sop, Term, Expr_Prime)), AST.tail_handler)
 ```
 
 Here is the result of parsing the expression (1 + 2) * 3
 
-```
+```javascript
 AST_BinaryOp {
   value: '*',
   right: AST_Number { value: '3' },
@@ -298,9 +298,9 @@ AST_BinaryOp {
 
 ### Evaluating the AST
 
-Now that we have an AST, let's evaluate the tree to compute its value. Since we're such good software developers, we'll take the lazy way out and add an ```eval()``` method to each AST_Node subclass whose purpose is to evaluate that node. ```AST_Number.eval()``` converts its text content to a number. ```AST_BinaryOp.eval()``` applies the operator specified in its text content to the results of evaluating its operand properties.
+Now that we have an AST, let's evaluate the tree to compute its value. Since we're such good software developers, we'll take the lazy way out and add an `eval()` method to each AST_Node subclass whose purpose is to evaluate that node. `AST_Number.eval()` converts its text content to a number. `AST_BinaryOp.eval()` applies the operator specified in its text content to the results of evaluating its operand properties.
 
-```
+```javascript
 class AST_BinaryOp extends AST_Node {
     constructor(value) {
         super(value);
@@ -330,9 +330,11 @@ Kevin went on to add other functionality to his grammar. First he added **modulo
 
 If you use parser combinators to build your parsers and evaluators, the hardest part is getting the grammar correct. Building a parser generator that takes a grammar and uses a parser combinator library to build a parser is left as an exercise for the reader. :)
 
+#### Footnotes
+
 [^1]: Explain the difference between javascript function expressions and function definitions.
 
-[^2]: Mention that ```open()``` and ```close()``` are functions that take a stream.
+[^2]: Mention that `open()` and `close()` are functions that take a stream.
 
 [^3]: If you look at the code in the repository you'll see that the non-terminal functions use javascript function definition syntax, not function expression syntax. This is because we have recursive functions and function definitions are hoisted.
 
