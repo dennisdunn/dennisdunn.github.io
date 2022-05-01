@@ -7,10 +7,10 @@ comment: These are the speaker notes for a talk I planned to give at Stir Trek 2
 excerpt_separator: <!--more-->
 ---
 
-We’re going to be talking about parsing - what it is, how to do it, and why it’s hard.<!--more--> Since we’re at a software developers conference we won’t talk about the parsing you might have done in middle school where you take a sentence in a **natural language** and break it up into different pieces - nouns, verbs, adjectives. We’re going to take sentences in a **formal language** and break them up into parts like ‘number,’ ‘term,’ ‘function call’, and ‘expression.’
+We're going to be talking about parsing - what it is, how to do it, and why it's hard.<!--more--> Since we're at a software developers conference we won't talk about the parsing you might have done in middle school where you take a sentence in a **natural language** and break it up into different pieces - nouns, verbs, adjectives. We're going to take sentences in a **formal language** and break them up into parts like 'number,' 'term,' 'function call', and 'expression.'
 
 
-We’ll look at parsers which are functions that take an **input sentence** to produce a **data object** that reflects the structure of the input. The best definition that I’ve run across is
+We'll look at parsers which are functions that take an **input sentence** to produce a **data object** that reflects the structure of the input. The best definition that I've run across is
 
 
 > A parser is a function that maps strings to things.
@@ -23,7 +23,7 @@ Because formal languages was not my best course at college and the first word in
 At the start of the pandemic lockdowns my friend Kevin was working with the Pennington County School District. They wanted to expand their home-school offerings and the first module they wanted to extend was the math module with the ability for the kids to type in arithmetic sentences and have them evaluated.
 
 
-At first, Kevin used the tools he knew about and that had worked well for him in the past. His first attempt at solving the problem with regular expressions failed miserably. He would get to a certain point in parsing these math sentences and then couldn’t get any further. He did what any competent software developer would do and he consulted the oracle, StackOverflow.
+At first, Kevin used the tools he knew about and that had worked well for him in the past. His first attempt at solving the problem with regular expressions failed miserably. He would get to a certain point in parsing these math sentences and then couldn't get any further. He did what any competent software developer would do and he consulted the oracle, StackOverflow.
 
 
 As it turns out, back in 1956 Noam Chomsky defined 4 types of formal languages. 
@@ -34,13 +34,13 @@ As it turns out, back in 1956 Noam Chomsky defined 4 types of formal languages.
 * Type 2 - Context free
 * Type 3 - Regular
 
-The major difference between these different types of formal language is the amount of information that needs to be retained to properly parse sentences in that language. An example of a Type 3 language is the comma-separated-values format; the data is 2-dimensional, without any nesting, and can be processed with a simple finite state automaton. I’m sure that most of you, like Kevin, have used regular expressions to process a CSV file. It’s no coincidence that regular expressions are used to process regular languages!
+The major difference between these different types of formal language is the amount of information that needs to be retained to properly parse sentences in that language. An example of a Type 3 language is the comma-separated-values format; the data is 2-dimensional, without any nesting, and can be processed with a simple finite state automaton. I'm sure that most of you, like Kevin, have used regular expressions to process a CSV file. It's no coincidence that regular expressions are used to process regular languages!
 
 The thing that stumped Kevin was that the sentences he was dealing with contained nested elements. It was like trying to parse an HTML file with regular expressions; what do you do when you come to an opening tag before you find the closing tag for the one you are currently on? Kevin discovered that he was dealing with a Type 2 context free language.
 
 Kevin needed to level up his parsing skills!
 
-## What’s the solution?
+## What's the solution?
 
 There are plenty of tools to build parsers for context-free and context-sensitive languages such as
 
@@ -68,7 +68,7 @@ Here is a simple grammar written in Backus-Naur form for arithmetic expressions.
 
 The first line says that an expression is an expression, a plus symbol, and a term OR an expression, a minus symbol, and a term OR a term. Using these rules we can break down a sentence like ```1+2``` into its parts.
 
-Let’s simplify the notation a little bit
+Let's simplify the notation a little bit
 
 ```
 Expr -> Expr + Term | Expr - Term | Term
@@ -119,24 +119,24 @@ Term′ -> product Factor Term′ | ε
 Factor -> open Expr close | number
 ```
 
-Enough hand-waving - let’s build a parser using parser combinators so you can see how powerful they really are!
+Enough hand-waving - let's build a parser using parser combinators so you can see how powerful they really are!
 
 ## A Parser Combinator Library
 
-We are going to build a parser combinator library called Tiny Parse for Kevin and he’ll use it to build a parser for the simple arithmetic expressions that we just built the grammar for. 
+We are going to build a parser combinator library called Tiny Parse for Kevin and he'll use it to build a parser for the simple arithmetic expressions that we just built the grammar for. 
 
 If you want to dive right into it you can find the source code at:
 
 https://github.com/dennisdunn/tiny-parse-js.git
 
-It is also available as an npm package if you want to play around with the library. Note that this is not production-ready code, it’s a pedantic tool so don’t use it in anger! Just follow the instructions in the README to add Tiny Parse to your package.json.
+It is also available as an npm package if you want to play around with the library. Note that this is not production-ready code, it's a pedantic tool so don't use it in anger! Just follow the instructions in the README to add Tiny Parse to your package.json.
 
 ## The problem of State
 
 Remember that we are dealing with a Type 2 context-free language, that means that our parser will need to hold more state than
-can be accomadated in a simple state machine. First, our input string will have a pointer to the next character to be read. We’ll encapsulate the string and the pointer into a Stream class with seek(position), peek() and read() methods. Read() will return the next character from the stream and advance the pointer. Peek() returns the next character but does not advance the pointer. Seek() moves the pointer to the designated position and returns nothing.
+can be accomadated in a simple state machine. First, our input string will have a pointer to the next character to be read. We'll encapsulate the string and the pointer into a Stream class with seek(position), peek() and read() methods. Read() will return the next character from the stream and advance the pointer. Peek() returns the next character but does not advance the pointer. Seek() moves the pointer to the designated position and returns nothing.
 
-Secondly, the nested nature of the processing will be tracked on the call stack of the functions making up the parser. We’ll need to be aware of this as we build our parser or we will absolutely blow the stack on a simple input sentence. 
+Secondly, the nested nature of the processing will be tracked on the call stack of the functions making up the parser. We'll need to be aware of this as we build our parser or we will absolutely blow the stack on a simple input sentence. 
 
 ## Code the simplest thing possible
 
@@ -151,8 +151,8 @@ char = c => stream =>  stream.peek() === c ? stream.read() : null;[^1]
 Note that char() is not a parser but a parser generator, it takes some text and returns a parser for that text. This one generator allows us to create parsers for two of the rules of our grammar, namely the open and close parentheses.
 
 
-* open = char(‘(‘)[^2]
-* close = char(‘)’)
+* open = char('(')[^2]
+* close = char(')')
 
 
 To parse something like the sum terminal of our grammar we want to determine if the next character is one of a set of characters. We need a higher-order function that takes a couple of ```char()``` parsers and returns a parser.
@@ -171,29 +171,29 @@ or = parsers => stream => {
 
 Using just the ```char()``` generator and the ```or()``` combinator we can parse the math operator terminals of our grammar.
 
-* sum = or(char(‘+’), char(‘-’))
-* prod = or(char(‘*’), char(‘/’))
+* sum = or(char('+'), char('-'))
+* prod = or(char('*'), char('/'))
 
-Albert Einstein is credited with the aphorism  “Make things as simple as possible, but no simpler.” We have a powerful programming language so let’s use it accordingly. You will find that some parser combinator libraries actually use regular expressions as the basis for their parser generators.
+Albert Einstein is credited with the aphorism  “Make things as simple as possible, but no simpler.” We have a powerful programming language so let's use it accordingly. You will find that some parser combinator libraries actually use regular expressions as the basis for their parser generators.
 
-The basic parser generators of our combinator library are anyOfChar() and str(). We’ve changed the signatures of the stream methods to accept the number or characters to peek or read.
+The basic parser generators of our combinator library are anyOfChar() and str(). We've changed the signatures of the stream methods to accept the number or characters to peek or read.
 
 ```
 anyOfChar = text => stream => text.indexOf(stream.peek(1)) >= 0 
-? stream.read(1) 
-: null;
+    ? stream.read(1) 
+    : null;
 
 str = text => stream => stream.peek(text.length) === text
-        ? stream.read(text.length)
-        : null;
+    ? stream.read(text.length)
+    : null;
 ```
 
 So far, Kevin has come up with the following parsers for his grammar:
         
-* sum = anyOfChar(‘+-’)
-* prod = anyOfChar(‘*/’)
-* open = str(‘(‘)
-* close = str(‘)’)
+* sum = anyOfChar('+-')
+* prod = anyOfChar('*/')
+* open = str('(')
+* close = str(')')
 
 To create parsers for the number terminal and the non-terminals Kevin needs a few more combinators.
 
@@ -217,10 +217,10 @@ To create parsers for the number terminal and the non-terminals Kevin needs a fe
 First Kevin defines some parsers for the components of a number:
 
 ```
-digit = anyOfChar(‘0123456789’)
+digit = anyOfChar('0123456789')
 digits = sequence(digit, many(digit))
-sign = anyOfChar(‘+-’)
-fractional = sequence(str(‘.’), digits)
+sign = anyOfChar('+-')
+fractional = sequence(str('.'), digits)
 ```
 
 Then he combines them into a parser for numbers:
@@ -247,11 +247,11 @@ If you want to follow along with the code examples in this section, clone https:
 
 ### Parse Trees
 
-The start symbol of the grammar, ```G.start()```, gives us the function to call to parse our expressions. Calling ```G.start(‘(1 + 2) * 3’)``` results in an array-of-arrays which is the parse tree of our expression. The parse tree contains all of the elements of the text with very little other structure.
+The start symbol of the grammar, ```G.start()```, gives us the function to call to parse our expressions. Calling ```G.start('(1 + 2) * 3')``` results in an array-of-arrays which is the parse tree of our expression. The parse tree contains all of the elements of the text with very little other structure.
 
 ### Token Stream
 
-Let's tag the elements so that we know which part of the expression they represent. We’ll take our terminal parsers and map the result to a function that tags the element. To do that, we’ll use the ```map()``` combinator.
+Let's tag the elements so that we know which part of the expression they represent. We'll take our terminal parsers and map the result to a function that tags the element. To do that, we'll use the ```map()``` combinator.
 
 First, create a function that curries the token type argument of a token generator function:
 
@@ -259,21 +259,21 @@ First, create a function that curries the token type argument of a token generat
 token = type => value => ({type, value})
 ```
 
-Next, let’s create some new parsers out of our existing parsers that return tokens instead of matched strings:
+Next, let's create some new parsers out of our existing parsers that return tokens instead of matched strings:
         
 ```
-open = map(open, token(‘open-paren’))
-close = map(close, token(‘close-paren’))
-sum = map(sum, token(‘sum-op’))
-prod = map(prod, token(‘prod-op’))
-number = map(number, token(‘number’))
+open = map(open, token('open-paren'))
+close = map(close, token('close-paren'))
+sum = map(sum, token('sum-op'))
+prod = map(prod, token('prod-op'))
+number = map(number, token('number'))
 ```
 
 If we do an inorder-traversal of the resulting tree we get a stream of tokens that can be passed to the shunting-yard algorithm for evaluation.
 
 ### Abstract Syntax Tree
 
-Instead of creating tokens, let’s create an abstract syntax tree of the source text by instantiating instances of an AST_Node class. Each terminal symbol of the grammar will have an associated AST_Node subclass and the non-terminals are handled by static methods on the AST_Node class. The class hierarchy is actually simpler than the token we used in the previous example because the sum and prod rules are both mapped to an AST_BinaryOp.
+Instead of creating tokens, let's create an abstract syntax tree of the source text by instantiating instances of an AST_Node class. Each terminal symbol of the grammar will have an associated AST_Node subclass and the non-terminals are handled by static methods on the AST_Node class. The class hierarchy is actually simpler than the token we used in the previous example because the sum and prod rules are both mapped to an AST_BinaryOp.
 
 Recall that our grammar has non-terminals of the form Α and Α′. Α is referred to as the head and Α′ is called the tail. The map() combinator is used to apply the static head_handler() and tail_handler() methods to the result of a parse of the non-terminal to build the tree. The handlers will look at the parse tree returned by the parser and set the tree properties of the node to the correct values.
 
@@ -298,7 +298,7 @@ AST_BinaryOp {
 
 ### Evaluating the AST
 
-Now that we have an AST, let’s evaluate the tree to compute its value. Since we’re such good software developers, we’ll take the lazy way out and add an ```eval()``` method to each AST_Node subclass whose purpose is to evaluate that node. ```AST_Number.eval()``` converts its text content to a number. ```AST_BinaryOp.eval()``` applies the operator specified in its text content to the results of evaluating its operand properties.
+Now that we have an AST, let's evaluate the tree to compute its value. Since we're such good software developers, we'll take the lazy way out and add an ```eval()``` method to each AST_Node subclass whose purpose is to evaluate that node. ```AST_Number.eval()``` converts its text content to a number. ```AST_BinaryOp.eval()``` applies the operator specified in its text content to the results of evaluating its operand properties.
 
 ```
 class AST_BinaryOp extends AST_Node {
@@ -331,10 +331,10 @@ Kevin went on to add other functionality to his grammar. First he added modulo a
 
 If you use parser combinators to build your parsers and evaluators, the hardest part is getting the grammar correct. Building a parser generator that takes a grammar and uses a parser combinator library to build a parser is left as an exercise for the reader. :)
 
-[^1]Explain the difference between javascript function expressions and function definitions.
+[^1]: Explain the difference between javascript function expressions and function definitions.
 
-[^2]Mention that open() and close() are functions that take a stream.
+[^2]: Mention that open() and close() are functions that take a stream.
 
-[^3]If you look at the code in the repository you'll see that the non-terminal functions use javascript function definition syntax, not function expression syntax. This is because we have recursive functions and function definitions are hoisted.
+[^3]: If you look at the code in the repository you'll see that the non-terminal functions use javascript function definition syntax, not function expression syntax. This is because we have recursive functions and function definitions are hoisted.
 
-[^4]Note that we test for a number first. Remember that comment about blowing the stack? This is why.
+[^4]: Note that we test for a number first. Remember that comment about blowing the stack? This is why.
