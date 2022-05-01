@@ -4,14 +4,13 @@ title: Practical Parsing
 subtitle: Level Up with Parser Combinators
 image: practical-parsing.svg
 comment: These are the speaker notes for a talk I planned to give at Stir Trek 2022
+excerpt_separator: <!--more-->
 ---
 
-## Introduction
-
-We’re going to be talking about parsing - what it is, how to do it, and why it’s hard. Since we’re at a software developers conference we won’t talk about the parsing you might have done in middle school where you take a sentence in a natural language and break it up into different pieces - nouns, verbs, adjectives. We’re going to take sentences in a formal language and break them up into parts like ‘number,’ ‘term,’ ‘function call’, and ‘expression.’
+We’re going to be talking about parsing - what it is, how to do it, and why it’s hard.<!--more--> Since we’re at a software developers conference we won’t talk about the parsing you might have done in middle school where you take a sentence in a **natural language** and break it up into different pieces - nouns, verbs, adjectives. We’re going to take sentences in a **formal language** and break them up into parts like ‘number,’ ‘term,’ ‘function call’, and ‘expression.’
 
 
-We’ll look at parsers which are functions that take an input sentence to produce a data object that reflects the structure of the input. The best definition that I’ve run across is
+We’ll look at parsers which are functions that take an **input sentence** to produce a **data object** that reflects the structure of the input. The best definition that I’ve run across is
 
 
 > A parser is a function that maps strings to things.

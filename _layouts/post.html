@@ -5,7 +5,7 @@ layout: default
 <article class="post">
   <h1>{{ page.title }}</h1>
   {% if page.subtitle %}<h2>{{ page.subtitle }}</h2>{% endif %}
-  {% if page.comment %}<p><i>{{ page.comment }}</i></p>{% endif %}
+  {% if page.comment %}<p><i><small>{{ page.comment }}</small></i></p>{% endif %}
 
   <div class="entry">
     {{ content }}
