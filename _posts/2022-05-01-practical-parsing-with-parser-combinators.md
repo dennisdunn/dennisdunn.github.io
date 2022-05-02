@@ -95,8 +95,11 @@ This time, Kevin consults the other oracle, Wikipedia.
 We have rules of the form
 
 ```
-Α -> Αɑ1 | … | Αɑn | β1 | … | βm
+Α -> Αɑ<sub>1</sub> | … | Αɑ<sub>n</sub> | β<sub>1</sub> | … | β<sub>m<s/ub>
 ```
+
+
+Α -> Αɑ<sub>1</sub> | … | Αɑ<sub>n</sub> | β<sub>1</sub> | … | β<sub>m<s/ub>
 
 We need to make some substitutions like this
 
