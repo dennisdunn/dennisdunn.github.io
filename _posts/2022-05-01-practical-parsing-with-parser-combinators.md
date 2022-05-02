@@ -94,13 +94,13 @@ This time, Kevin consults the other oracle, Wikipedia.
 
 We have rules of the form:
 
-![Eq 1](/images/practical-parsing/eq1.png)
+![Eq 1](/images/practical-parsing/eq1.svg)
 
 We need to make some substitutions like this:
 
 ![Eq 2](/images/practical-parsing/eq2.svg)
 
-![Eq 3](/images/practical-parsing/eq3.png)
+![Eq 3](/images/practical-parsing/eq3.svg)
 
 That little **ε** is epsilon or the **empty-rule** and is the key for the transformation. It stops the production from recursively eating all of space and time. After all of these substitutions Kevins final blueprint looks like this
 
