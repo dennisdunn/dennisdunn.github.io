@@ -4,10 +4,10 @@ title: Practical Parsing
 subtitle: Level Up with Parser Combinators
 image: practical-parsing.svg
 comment: These are the speaker notes for a talk I planned to give at Stir Trek 2022
-excerpt_separator: <!--more-->
+excerpt_separator: <!--more-&rarr;
 ---
 
-We're going to be talking about parsing - what it is, how to do it, and why it's hard.<!--more--> Since we're at a software developers conference we won't talk about the parsing you might have done in middle school where you take a sentence in a **natural language** and break it up into different pieces - nouns, verbs, adjectives. We're going to take sentences in a **formal language** and break them up into parts like 'number,' 'term,' 'function call', and 'expression.'
+We're going to be talking about parsing - what it is, how to do it, and why it's hard.<!--more-&rarr; Since we're at a software developers conference we won't talk about the parsing you might have done in middle school where you take a sentence in a **natural language** and break it up into different pieces - nouns, verbs, adjectives. We're going to take sentences in a **formal language** and break them up into parts like 'number,' 'term,' 'function call', and 'expression.'
 
 
 We'll look at parsers which are functions that take an **input sentence** to produce a **data object** that reflects the structure of the input. The best definition that I've run across is
@@ -71,21 +71,21 @@ The first line says that an expression is an expression, a plus symbol, and a te
 Let's simplify the notation a little bit
 
 ```
-Expr -> Expr + Term | Expr - Term | Term
-Term -> Term * Factor | Term / Factor | Factor
-Factor -> ( Expr ) | number
+Expr &rarr; Expr + Term | Expr - Term | Term
+Term &rarr; Term * Factor | Term / Factor | Factor
+Factor &rarr; ( Expr ) | number
 ```
 
 and introduce symbols for our character literals
 
 ```
-sum -> + | -
-product -> * | /
-open -> (
-close -> )
-Expr -> Expr sum Term | Term
-Term -> Term product Factor | Factor
-Factor -> open Expr close | number
+sum &rarr; + | -
+product &rarr; * | /
+open &rarr; (
+close &rarr; )
+Expr &rarr; Expr sum Term | Term
+Term &rarr; Term product Factor | Factor
+Factor &rarr; open Expr close | number
 ```
 
 You might notice that we have a small problem. Expr can be produced by an Expr followed by a sum operator followed by Term. Our naive grammar is left recursive and before we can use it we must get rid of the recursion.
@@ -105,15 +105,15 @@ We need to make some substitutions like this:
 That little **ε** is epsilon or the **empty-rule** and is the key for the transformation. It stops the production from recursively eating all of space and time. After all of these substitutions Kevins final blueprint looks like this
 
 ```
-sum -> + | -
-product -> * | /
-open -> (
-close -> )
-Expr -> Term Expr′
-Expr′ -> sum Term Expr′ | ε
-Term -> Factor Term′
-Term′ -> product Factor Term′ | ε
-Factor -> open Expr close | number
+sum &rarr; + | -
+product &rarr; * | /
+open &rarr; (
+close &rarr; )
+Expr &rarr; Term Expr′
+Expr′ &rarr; sum Term Expr′ | ε
+Term &rarr; Factor Term′
+Term′ &rarr; product Factor Term′ | ε
+Factor &rarr; open Expr close | number
 ```
 
 Enough hand-waving - let's build a parser using parser combinators so you can see how powerful they really are!
