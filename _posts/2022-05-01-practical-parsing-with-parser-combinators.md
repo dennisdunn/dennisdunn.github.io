@@ -92,21 +92,15 @@ You might notice that we have a small problem. Expr can be produced by an Expr f
 
 This time, Kevin consults the other oracle, Wikipedia. 
 
-We have rules of the form
+We have rules of the form:
 
-```
-Α -> Αɑ<sub>1</sub> | … | Αɑ<sub>n</sub> | β<sub>1</sub> | … | β<sub>m<s/ub>
-```
+![Eq 1](https://latex.codecogs.com/svg.image?A&space;\to&space;A\alpha_{1}&space;|&space;...&space;|&space;A\alpha_{n}&space;|&space;\beta_{1}&space;|&space;...&space;|\beta_{m})
 
+We need to make some substitutions like this:
 
-`Α -> Αɑ<sub>1</sub> | … | Αɑ<sub>n</sub> | β<sub>1</sub> | … | β<sub>m</sub>`
+![Eq 2](https://latex.codecogs.com/svg.image?A&space;\to&space;A'\beta_{1}&space;|&space;...&space;|&space;A'\beta_{m})
 
-We need to make some substitutions like this
-
-```
-Α -> Α′β1 | … | Α′βm
-Α′ -> ɑ1Α′ | … | ɑnΑ′ | ε
-```
+![Eq 3](https://latex.codecogs.com/svg.image?A'&space;\to&space;\alpha_{1}A'&space;|&space;...&space;|&space;\alpha_{n}A'&space;|&space;\epsilon&space;)
 
 That little **ε** is epsilon or the **empty-rule** and is the key for the transformation. It stops the production from recursively eating all of space and time. After all of these substitutions Kevins final blueprint looks like this
 
