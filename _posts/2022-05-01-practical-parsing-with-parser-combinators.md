@@ -142,7 +142,7 @@ Our parser combinators are functions that combine … parsers. A parser is a fun
 The simplest thing that we can parse is a single character like the mathematical operators of our grammar. If the next character in the sentence is the one we expected then return it to the caller and advance the position of the input stream. 
 
 ```javascript
-char = c => stream =>  stream.peek() === c ? stream.read() : null; [^1]
+char = c => stream =>  stream.peek() === c ? stream.read() : null;
 ```
 
 Note that char() is not a parser but a parser generator, it takes some text and returns a parser for that text. This one generator allows us to create parsers for two of the rules of our grammar, namely the open and close parentheses.
