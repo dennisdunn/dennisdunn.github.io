@@ -98,7 +98,7 @@ We have rules of the form:
 
 We need to make some substitutions like this:
 
-![Eq 2](/images/practical-parsing/eq2.png)
+![Eq 2](/images/practical-parsing/eq2.svg)
 
 ![Eq 3](/images/practical-parsing/eq3.png)
 
