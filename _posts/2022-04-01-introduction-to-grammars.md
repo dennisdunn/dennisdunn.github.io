@@ -7,7 +7,7 @@ excerpt_separator: <!--more-->
 
 When I read David Holden's post [You could have invented Parser Combinators]([https://theorangeduck.com/page/you-could-have-invented-parser-combinators), I was struck by how simple yet powerful the idea was. I had built
 a recursive-descent parser for an abstract machine so I thought that I had a good handle on parsing. Wrong!
-
+<!--more-->
 I built a parser combinator library in Javascript based on Davids post and discovered how easy it was to 
 build a parser for an arithmetic-expression language. These are my notes on defining the grammar of 
 that language.

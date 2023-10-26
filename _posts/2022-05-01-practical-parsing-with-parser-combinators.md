@@ -35,9 +35,11 @@ Factor -> open Expr close | number
 
 If you want to dive right into it you can find the source code at:
 
-https://github.com/dennisdunn/TinyParse-cs.git
+- [Tiny Parse C# project](https://github.com/dennisdunn/TinyParse-cs.git)
 
-It is also available as a Nuget package if you want to play around with the library. Note that this is not production-ready code, it's a pedantic tool so don't use it in anger! Just follow the instructions in the README to add Tiny Parse to your solution.
+If you would like to see how I came up with the grammar, read:
+
+- [So You Want To Parse Something - An Introduction to Grammars](https://dennisdunn.github.io/introduction-to-grammars/)
 
 ## The problem of State
 
