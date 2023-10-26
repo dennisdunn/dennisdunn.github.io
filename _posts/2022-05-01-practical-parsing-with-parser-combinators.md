@@ -3,11 +3,10 @@ layout: post
 title: Practical Parsing
 subtitle: Level Up with Parser Combinators
 image: practical-parsing.svg
-comment: These are the speaker notes for a talk I planned to give at Stir Trek 2022
 excerpt_separator: <!--more-->
 ---
 
-We're going to be talking about parsing - what it is, how to do it, and why it's hard.<!--more-->We won't talk about the parsing you might have done in middle school where you take a sentence in a **natural language** and break it up into different pieces - nouns, verbs, adjectives. We're going to take sentences in a **formal language** and break them up into parts like 'number,' 'term,' 'function call', and 'expression.'
+We're going to be talking about parsing - what it is, how to do it, and why it's hard. <!--more--> We won't talk about the parsing you might have done in middle school where you take a sentence in a **natural language** and break it up into different pieces - nouns, verbs, adjectives. We're going to take sentences in a **formal language** and break them up into parts like 'number,' 'term,' 'function call', and 'expression.'
 
 
 We'll look at parsers which are functions that take an **input sentence** to produce a **data object** that reflects the structure of the input. 
@@ -20,7 +19,7 @@ Because formal languages was not my best course at college and the first word in
 
 ## A Parser Combinator Library
 
-We are going to build a parser combinator library called Tiny Parse use it to build a parser for  simple arithmetic expressions. 
+We are going to build a parser combinator library called _Tiny Parse_ and use it to build a parser for simple arithmetic expressions. 
 
 ```
 sumOp -> + | -
@@ -43,7 +42,7 @@ It is also available as a Nuget package if you want to play around with the libr
 ## The problem of State
 
 Our arithmetic expressions are a Type 2 context-free language, that means that our parser will need to hold more state than
-can be accomadated in a simple state machine. First, our input string will have a pointer to the next character to be read. We'll encapsulate the string and the pointer with an IText interface with Seek(position), Peek() and Read() methods as well as a Position property. Read() will return the next character from the input and advance the pointer. Peek() returns the next  character but does not advance the pointer. Seek() moves the pointer to the designated position in the input and returns nothing. Position returns the current position in the input string.
+can be accommodated in a simple state machine. First, our input string will have a pointer to the next character to be read. We'll encapsulate the string and the pointer with an `IText` interface with `Seek(position)`, `Peek()` and `Read()` methods as well as a Position property. `Read()` will return the next character from the input and advances the pointer. `Peek()` returns the next  character but does not advance the pointer. `Seek(position)` moves the pointer to the designated position in the input and returns nothing. The `Position` property returns the current position of the pointer. 
 
 Secondly, the nested nature of the processing will be tracked on the call stack of the functions making up the parser. We'll need to be aware of this as we build our parser or we will absolutely blow the stack on a simple input sentence. 
 
@@ -98,7 +97,7 @@ Parser sumOp = Or(Char("+"), Char("-"));
 Parser prodOp = Or(Char("*"), Char("/"));
 ```
 
-Albert Einstein is credited with the aphorism  __“Make things as simple as possible, but no simpler.”__ We have a powerful programming language so let's use it accordingly. You will find that some parser combinator libraries actually use regular expressions as the basis for their parser generators.
+Albert Einstein is credited with the aphorism  _“Make things as simple as possible, but no simpler.”_ We have a powerful programming language so let's use it accordingly. You will find that some parser combinator libraries actually use regular expressions as the basis for their parser generators.
 
 The basic parser generators of our combinator library are `AnyOf()` and `Str()`. We've changed the signatures of the IText methods to accept the number of characters to peek or read.
 
@@ -134,9 +133,9 @@ Parser OpenParen = Str("(");
 Parser CloseParen = Str(")");
 ```  
 
-To create parsers for the number terminal and the non-terminals Kevin needs a few more combinators.
+To create parsers for the number terminal and the non-terminals we need a few more combinators.
 
-## Code the Essential Combinators
+## The Essential Combinators
 
 - Any 
     - Returns the first parser that succeeds.
