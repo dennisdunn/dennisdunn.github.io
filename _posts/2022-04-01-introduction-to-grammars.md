@@ -79,13 +79,13 @@ This time, I consulted the other oracle, Wikipedia.
 
 I have rules of the form:
 
-![Eq 1](/images/practical-parsing/eq1.svg)
+![Eq 1](/assets/practical-parsing/eq1.svg)
 
 I need to make some substitutions like this:
 
-![Eq 2](/images/practical-parsing/eq2.svg)
+![Eq 2](/assets/practical-parsing/eq2.svg)
 
-![Eq 3](/images/practical-parsing/eq3.svg)
+![Eq 3](/assets/practical-parsing/eq3.svg)
 
 That little **ε** is epsilon or the **empty-rule** and is the key for the transformation. It stops the production from recursively eating all of space and time causing a Whovian apocalypse. After all of these substitutions my final blueprint looks like this.
 
