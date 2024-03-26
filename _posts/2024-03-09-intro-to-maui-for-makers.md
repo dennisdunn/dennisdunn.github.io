@@ -5,8 +5,8 @@ subtitle: Stir Trek 2024
 excerpt_separator: <!--more-->
 ---
 
-I'll be speaking at Stir Trek this year on .NET MAUI and building an app
-for configuring a gizmo.
+I'll be speaking at [Stir Trek](https://stirtrek.com/speakers/2024/Dennis-Dunn.html#abstract) this year 
+on .NET MAUI and building an app for configuring a gizmo.
 
 <!--more-->
 
