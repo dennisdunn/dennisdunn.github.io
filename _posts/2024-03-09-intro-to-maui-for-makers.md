@@ -18,6 +18,6 @@ This year, however, I managed to secure a slot with a talk on Android app develo
 
 Here are some resources if you would like to follow along while I work on the app and the presentation.
 
-- [Intro to MAUI For Makers - The presentation slides](https://docs.google.com/presentation/d/e/2PACX-1vQjudnkOsR4v3_R4lXqyibfpzXlO1m14Z1Z7AUTHKVVmVm52Adfocjrp0ce8L6GyEAde2zrlwFNozGk/pub?start=true&loop=true&delayms=3000){:target="_blank"} 
+- [Intro to MAUI For Makers - The presentation slides](https://docs.google.com/presentation/d/e/2PACX-1vSf7BKA67j3hwyDbvKRJ9oJVSfbYALALcQpwkX6ILGhYz5D7ICfXV_Njwt-IypJgjoWvFjLkCR5kFu9/pub?start=true&loop=true&delayms=3000){:target="_blank"} 
 - [Pico Life - Conways Game Of Life running on a microcontroller](https://github.com/dennisdunn/PicoLifeGizmo){:target="_blank"} 
 - [Pico Life App - The .NET MAUI application for controlling the gizmo](https://github.com/dennisdunn/PicoLifeApp){:target="_blank"} 
