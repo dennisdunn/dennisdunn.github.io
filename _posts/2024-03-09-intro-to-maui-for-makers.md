@@ -20,8 +20,7 @@ We'll look at building an app to control this gizmo, *Conways Game of Life* runn
            margin-left: auto;
            margin-right: auto;"
     src="/assets/intro-to-maui-for-makers/pico-life.gif" 
-    alt="Conways Game Of Life">
-</img>
+    alt="Conways Game Of Life"/>
 
  I'll start with the gizmo and how to advertise over *Bluetooth LE* on a **Raspberry Pico W**. The second section of the talk will be about setting up Visual Studio 2022 for cross-platform development. The third part of the talk will cover developing the gizmo configuration app for Android.
 
