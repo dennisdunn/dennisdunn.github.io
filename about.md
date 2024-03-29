@@ -4,12 +4,16 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+### Stuff
 
-### More Information
+- [Trek Game](https://dennisdunn.github.io/trek)
 
-A place to include any other types of information that you'd like to include about yourself.
+### Organizations
+
+- [AE0TR](https://ae0tr.github.io)
+- [OpenCDSI](https://opencdsi.org)
+- [Anso Designs](https://ansodesigns.com)
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[ansofive@gmail.com](mailto:ansofive+github@gmail.com)
