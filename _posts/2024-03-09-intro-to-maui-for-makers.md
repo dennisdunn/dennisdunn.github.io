@@ -27,5 +27,6 @@ We'll look at building an app to control this gizmo, *Conways Game of Life* runn
 Here are some resources if you would like to follow along while I work on the app and the presentation.
 
 - [Intro to MAUI For Makers - The presentation slides](https://docs.google.com/presentation/d/e/2PACX-1vSf7BKA67j3hwyDbvKRJ9oJVSfbYALALcQpwkX6ILGhYz5D7ICfXV_Njwt-IypJgjoWvFjLkCR5kFu9/pub?start=true&loop=true&delayms=3000){:target="_blank"} 
+- [Intro to MAUI For Makers - Speaker Notes](/assets/intro-to-maui-for-makers/Intro%20To%20MAUI%20For%20Makers%20Speaker%20Notes.pdf){:target="_blank"} 
 - [Pico Life - Conways Game Of Life running on a microcontroller](https://github.com/dennisdunn/PicoLifeGizmo){:target="_blank"} 
 - [Pico Life App - The .NET MAUI application for controlling the gizmo](https://github.com/dennisdunn/PicoLifeApp){:target="_blank"} 
