@@ -7,13 +7,11 @@ permalink: /about/
 ### Stuff
 
 - [Trek Game](https://dennisdunn.github.io/trek)
+- [AE0ZW](https://ae0zw.github.io)
 
-### Organizations
-
-- [AE0TR](https://ae0tr.github.io)
-- [OpenCDSI](https://opencdsi.org)
-- [Anso Designs](https://ansodesigns.com)
 
 ### Contact me
 
 [ansofive@gmail.com](mailto:ansofive+github@gmail.com)
+
+[@ansofive.bsky.social](https://bsky.social/dennis-dunn/)
