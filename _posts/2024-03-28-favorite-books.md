@@ -32,7 +32,7 @@ One of the topics we talked about was books to read. Here are some of my favorit
 
 ### ANSI Common Lisp
 #### Paul Grahm
-> The 'flock of tabloids' example made me snort coffee. It really made me understand class attributes.
+> The 'flock of tabloids' example made me snort coffee. It really helped me understand class attributes.
 
 ### Crafting Interpreters
 #### Robert Nystrom
