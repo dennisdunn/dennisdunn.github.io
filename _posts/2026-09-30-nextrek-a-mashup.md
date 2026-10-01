@@ -10,5 +10,3 @@ turned into a mashup of *Star Trek*, *Hunt the Wumpus*, and *Asteroids*.
 - [Play **Nextrek**](https://dennisdunn.github.io/Nextrek/)
 - [Github](https://github.com/dennisdunn/Nextrek/)
 
-<!--more-->
-
