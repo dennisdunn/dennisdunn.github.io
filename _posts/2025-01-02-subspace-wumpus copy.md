@@ -2,7 +2,6 @@
 layout: post
 title: CodeMash Lightening Talk
 subtitle: 
-excerpt_separator: <!--more-->
 ---
 I'll be attending [CodeMash 2025](https://codemash.org) in January and I've signed up for a lightening talk.
 

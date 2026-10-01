@@ -2,7 +2,6 @@
 layout: post
 title: Protokuda
 subtitle: It's not LCARS!
-excerpt_separator: <!--more-->
 ---
 
 Protokuda is a CSS library for building Star Trek-ish 
