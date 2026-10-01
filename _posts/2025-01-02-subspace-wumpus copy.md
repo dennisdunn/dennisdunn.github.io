@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CodeMash Lightening Talk
-subtitle: Subspace Anomalies and Hunt the Wumpus
+subtitle: CodeMash 2025
 ---
 I'll be attending [CodeMash 2025](https://codemash.org) in January and I've signed up for a lightening talk.
 
