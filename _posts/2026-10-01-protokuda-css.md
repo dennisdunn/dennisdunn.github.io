@@ -5,6 +5,5 @@ subtitle: It's not LCARS!
 ---
 Protokuda is a CSS library for building Star Trek-ish 
 user interfaces.
-- [Protokuda Designer](https://dennisdunn.github.io/pk-designer/)
-- [Protokuda Themer](https://dennisdunn.github.io/pk-themer/)
+- [Protokuda Studio](https://dennisdunn.github.io/pk-studio/), a designer and a themer in one app
 - [Github](https://github.com/dennisdunn/protokuda)
